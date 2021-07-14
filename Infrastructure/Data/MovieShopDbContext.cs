@@ -50,6 +50,9 @@ namespace Infrastructure.Data
             modelBuilder.Entity<MovieCast>(ConfigureMovieCast);
             modelBuilder.Entity<Purchase>(ConfigurePurchase);
             modelBuilder.Entity<Role>(ConfigureRole);
+            modelBuilder.Entity<User>().HasMany(u => u.Roles).WithMany(r => r.Users).UsingEntity<Dictionary<string, object>>("UserRole",
+                 u => u.HasOne<Role>().WithMany().HasForeignKey("RoleId"),
+                 g => g.HasOne<User>().WithMany().HasForeignKey("UserId"));
         }
 
         private void ConfigureRole(EntityTypeBuilder<Role> obj)
