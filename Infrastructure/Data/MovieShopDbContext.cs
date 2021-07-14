@@ -36,6 +36,15 @@ namespace Infrastructure.Data
             modelBuilder.Entity<User>(ConfigureUser);
             modelBuilder.Entity<Favorite>(ConfigureFavorite);
             modelBuilder.Entity<Review>(ConfigureReview);
+            modelBuilder.Entity<MovieCrew>(ConfigureMovieCrew);
+        }
+
+        private void ConfigureMovieCrew(EntityTypeBuilder<MovieCrew> obj)
+        {
+            obj.ToTable("MovieCrew");
+            obj.HasKey(m => new { m.MovieId, m.CrewId, m.Department, m.Job });
+            obj.Property(m => m.Department).HasMaxLength(128);
+            obj.Property(m => m.Job).HasMaxLength(128);
         }
 
         private void ConfigureReview(EntityTypeBuilder<Review> obj)
@@ -63,7 +72,6 @@ namespace Infrastructure.Data
             obj.Property(u => u.HashedPassword).HasMaxLength(1024);
             obj.Property(u => u.Salt).HasMaxLength(1024);
             obj.Property(u => u.PhoneNumber).HasMaxLength(16);
-            //obj.Property(u => u.AccessFailedCount).IsRequired(false);
         }
 
         private void ConfigureCrew(EntityTypeBuilder<Crew> builder)
