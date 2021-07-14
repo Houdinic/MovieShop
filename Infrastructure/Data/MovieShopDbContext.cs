@@ -25,9 +25,9 @@ namespace Infrastructure.Data
         public DbSet<Favorite> Favorites { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<MovieCrew> MovieCrews { get; set; }
-
         public DbSet<Cast> Casts { get; set; }
         public DbSet<MovieCast> MovieCasts { get; set; }
+        public DbSet<Purchase> Purchases { get; set; }
 
         // to use fluent API we need to override a nmethod OnModelCreating
 
@@ -47,7 +47,16 @@ namespace Infrastructure.Data
                  g => g.HasOne<Movie>().WithMany().HasForeignKey("MovieId"));
             modelBuilder.Entity<Cast>(ConfigureCast);
             modelBuilder.Entity<MovieCast>(ConfigureMovieCast);
+            modelBuilder.Entity<Purchase>(ConfigurePurchase);
         }
+
+        private void ConfigurePurchase(EntityTypeBuilder<Purchase> obj)
+        {
+            obj.ToTable("Purchase");
+            obj.HasKey(p => p.Id);
+            obj.Property(p => p.TotalPrice).HasColumnType("decimal(18, 2)");
+        }
+
         private void ConfigureMovieCast(EntityTypeBuilder<MovieCast> obj)
         {
             obj.ToTable("MovieCast");
@@ -77,7 +86,8 @@ namespace Infrastructure.Data
             obj.HasKey(r => new{ r.UserId,r.MovieId});
             //obj.HasKey(r => r.UserId);
             //obj.HasKey(r => r.MovieId);
-            obj.Property(r => r.Rating).IsRequired();
+            obj.Property(r => r.Rating).IsRequired().HasColumnType("decimal(3, 2)");
+
         }
 
         private void ConfigureFavorite(EntityTypeBuilder<Favorite> obj)
