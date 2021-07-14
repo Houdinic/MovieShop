@@ -28,6 +28,7 @@ namespace Infrastructure.Data
         public DbSet<Cast> Casts { get; set; }
         public DbSet<MovieCast> MovieCasts { get; set; }
         public DbSet<Purchase> Purchases { get; set; }
+        public DbSet<Role> Roles { get; set; }
 
         // to use fluent API we need to override a nmethod OnModelCreating
 
@@ -48,6 +49,14 @@ namespace Infrastructure.Data
             modelBuilder.Entity<Cast>(ConfigureCast);
             modelBuilder.Entity<MovieCast>(ConfigureMovieCast);
             modelBuilder.Entity<Purchase>(ConfigurePurchase);
+            modelBuilder.Entity<Role>(ConfigureRole);
+        }
+
+        private void ConfigureRole(EntityTypeBuilder<Role> obj)
+        {
+            obj.ToTable("Role");
+            obj.HasKey(r => r.Id);
+            obj.Property(r => r.Name).HasMaxLength(20);
         }
 
         private void ConfigurePurchase(EntityTypeBuilder<Purchase> obj)
