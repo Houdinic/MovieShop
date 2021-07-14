@@ -9,31 +9,36 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Data
 {
-    public class MovieShopDbContext:DbContext
+    public class MovieShopDbContext : DbContext
     {
-        public MovieShopDbContext(DbContextOptions<MovieShopDbContext> options):base(options)
+        // DbSets as properties
+        public MovieShopDbContext(DbContextOptions<MovieShopDbContext> options) : base(options)
         {
 
         }
+
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Trailer> Trailers { get; set; }
+
+        // to use fluent API we need to override a nmethod OnModelCreating
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Movie>(ConfigureMovie);
             modelBuilder.Entity<Trailer>(ConfigureTrailer);
         }
+
         private void ConfigureTrailer(EntityTypeBuilder<Trailer> builder)
         {
             builder.ToTable("Trailer");
             builder.HasKey(t => t.Id);
             builder.Property(t => t.TrailerUrl).HasMaxLength(2084);
             builder.Property(t => t.Name).HasMaxLength(2084);
-
         }
         private void ConfigureMovie(EntityTypeBuilder<Movie> builder)
         {
+            // specify all the Fluent API rules for this model
             builder.ToTable("Movie");
             builder.HasKey(m => m.Id);
             builder.Property(m => m.Title).HasMaxLength(256).IsRequired();
