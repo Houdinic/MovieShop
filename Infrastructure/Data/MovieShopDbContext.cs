@@ -24,6 +24,10 @@ namespace Infrastructure.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Favorite> Favorites { get; set; }
         public DbSet<Review> Reviews { get; set; }
+        public DbSet<MovieCrew> MovieCrews { get; set; }
+
+        public DbSet<Cast> Casts { get; set; }
+        //public DbSet<MovieCast> MovieCasts { get; set; }
 
         // to use fluent API we need to override a nmethod OnModelCreating
 
@@ -41,6 +45,22 @@ namespace Infrastructure.Data
                 .UsingEntity<Dictionary<string, object>>("MovieGenre",
                  m => m.HasOne<Genre>().WithMany().HasForeignKey("GenreId"),
                  g => g.HasOne<Movie>().WithMany().HasForeignKey("MovieId"));
+            modelBuilder.Entity<Cast>(ConfigureCast);
+            //modelBuilder.Entity<MovieCast>(ConfigureMovieCast);
+        }
+        private void ConfigureMovieCast(EntityTypeBuilder<MovieCast> obj)
+        {
+            obj.ToTable("MovieCast");
+            obj.HasKey(m => new { m.MovieId, m.CastId, m.Character });
+            obj.Property(m => m.Character).HasMaxLength(450);
+        }
+        private void ConfigureCast(EntityTypeBuilder<Cast> obj)
+        {
+            obj.ToTable("Cast");
+            obj.HasKey(c => c.Id);
+            obj.Property(c => c.Name).HasMaxLength(128);
+            obj.Property(c => c.ProfilePath).HasMaxLength(2084);
+
         }
 
         private void ConfigureMovieCrew(EntityTypeBuilder<MovieCrew> obj)
