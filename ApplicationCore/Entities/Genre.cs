@@ -15,7 +15,7 @@ namespace ApplicationCore.Entities
         public int Id { get; set; }
         [MaxLength(24)]
         public string Name { get; set; }
-
+        public ICollection<Movie> Movies { get; set; }
     }
 
 }

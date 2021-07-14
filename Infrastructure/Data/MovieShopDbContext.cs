@@ -37,6 +37,10 @@ namespace Infrastructure.Data
             modelBuilder.Entity<Favorite>(ConfigureFavorite);
             modelBuilder.Entity<Review>(ConfigureReview);
             modelBuilder.Entity<MovieCrew>(ConfigureMovieCrew);
+            modelBuilder.Entity<Movie>().HasMany(m => m.Genres).WithMany(g => g.Movies)
+                .UsingEntity<Dictionary<string, object>>("MovieGenre",
+                 m => m.HasOne<Genre>().WithMany().HasForeignKey("GenreId"),
+                 g => g.HasOne<Movie>().WithMany().HasForeignKey("MovieId"));
         }
 
         private void ConfigureMovieCrew(EntityTypeBuilder<MovieCrew> obj)
