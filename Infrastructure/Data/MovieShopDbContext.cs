@@ -27,7 +27,7 @@ namespace Infrastructure.Data
         public DbSet<MovieCrew> MovieCrews { get; set; }
 
         public DbSet<Cast> Casts { get; set; }
-        //public DbSet<MovieCast> MovieCasts { get; set; }
+        public DbSet<MovieCast> MovieCasts { get; set; }
 
         // to use fluent API we need to override a nmethod OnModelCreating
 
@@ -46,7 +46,7 @@ namespace Infrastructure.Data
                  m => m.HasOne<Genre>().WithMany().HasForeignKey("GenreId"),
                  g => g.HasOne<Movie>().WithMany().HasForeignKey("MovieId"));
             modelBuilder.Entity<Cast>(ConfigureCast);
-            //modelBuilder.Entity<MovieCast>(ConfigureMovieCast);
+            modelBuilder.Entity<MovieCast>(ConfigureMovieCast);
         }
         private void ConfigureMovieCast(EntityTypeBuilder<MovieCast> obj)
         {
