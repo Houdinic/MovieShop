@@ -14,9 +14,8 @@ namespace Infrastructure.Repositories
     public class MovieRepository : EfRepository<Movie>, IMovieRepository
 
     {
-        public MovieRepository(MovieShopDbContext _Dbcontext)
+        public MovieRepository(MovieShopDbContext dbContext) : base(dbContext)
         {
-
         }
         public async Task<List<Movie>> GetHighest30GrossingMovies()
         {

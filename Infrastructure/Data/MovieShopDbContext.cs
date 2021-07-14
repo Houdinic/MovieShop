@@ -63,6 +63,7 @@ namespace Infrastructure.Data
             obj.Property(u => u.HashedPassword).HasMaxLength(1024);
             obj.Property(u => u.Salt).HasMaxLength(1024);
             obj.Property(u => u.PhoneNumber).HasMaxLength(16);
+            //obj.Property(u => u.AccessFailedCount).IsRequired(false);
         }
 
         private void ConfigureCrew(EntityTypeBuilder<Crew> builder)

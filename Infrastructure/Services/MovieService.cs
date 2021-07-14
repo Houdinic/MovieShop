@@ -17,12 +17,17 @@ namespace Infrastructure.Services
         {
             _movieRepositoy =  movieRepositoy;
         }
-        public async Task<List<MovieCardResponseModel>> GetTopRevenueMovies()
-        {
-            var movies = await _movieRepositoy.GetHighest30GrossingMovies();
-            var movieCards = new List<MovieCardResponseModel>();
 
+        public Task<List<MovieCardResponseModel>> GetTopRevenueMovies()
+        {
+            throw new NotImplementedException();
         }
+        //public async Task<List<MovieCardResponseModel>> GetTopRevenueMovies()
+        //{
+        //    var movies = await _movieRepositoy.GetHighest30GrossingMovies();
+        //    var movieCards = new List<MovieCardResponseModel>();
+
+        //}
 
     }
 }
