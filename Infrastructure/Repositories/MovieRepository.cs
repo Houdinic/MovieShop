@@ -5,15 +5,23 @@ using System.Text;
 using System.Threading.Tasks;
 using ApplicationCore.Entities;
 using ApplicationCore.RepositoryInterfaces;
+using Microsoft.EntityFrameworkCore;
+using Infrastructure.Data;
+
 
 namespace Infrastructure.Repositories
 {
-    public class MovieRepository : IMovieRepository
+    public class MovieRepository : EfRepository<Movie>, IMovieRepository
 
     {
-        List<Movie> IMovieRepository.GetHighest30GrossingMovies()
+        public MovieRepository(MovieShopDbContext _Dbcontext)
         {
-            throw new NotImplementedException();
+
+        }
+        public async Task<List<Movie>> GetHighest30GrossingMovies()
+        {
+            var TopMovies = await _DbContext.Movies.OrderByDescending(m => m.Revenue).Take(30).ToListAsync();
+            return TopMovies;
         }
     }
 }

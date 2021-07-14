@@ -7,8 +7,8 @@ using ApplicationCore.Entities;
 
 namespace ApplicationCore.RepositoryInterfaces
 {
-    public interface IMovieRepository
+    public interface IMovieRepository: IAsyncRepository<Movie>
     {
-         List<Movie> GetHighest30GrossingMovies();
+        Task<List<Movie>> GetHighest30GrossingMovies();
     }
 }
