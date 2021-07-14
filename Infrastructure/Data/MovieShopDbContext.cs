@@ -21,6 +21,9 @@ namespace Infrastructure.Data
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Trailer> Trailers { get; set; }
         public DbSet<Crew> Crews { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Favorite> Favorites { get; set; }
+        public DbSet<Review> Reviews { get; set; }
 
         // to use fluent API we need to override a nmethod OnModelCreating
 
@@ -30,7 +33,38 @@ namespace Infrastructure.Data
             modelBuilder.Entity<Movie>(ConfigureMovie);
             modelBuilder.Entity<Trailer>(ConfigureTrailer);
             modelBuilder.Entity<Crew>(ConfigureCrew);
+            modelBuilder.Entity<User>(ConfigureUser);
+            modelBuilder.Entity<Favorite>(ConfigureFavorite);
+            modelBuilder.Entity<Review>(ConfigureReview);
         }
+
+        private void ConfigureReview(EntityTypeBuilder<Review> obj)
+        {
+            obj.ToTable("Review");
+            obj.HasKey(r => new{ r.UserId,r.MovieId});
+            //obj.HasKey(r => r.UserId);
+            //obj.HasKey(r => r.MovieId);
+            obj.Property(r => r.Rating).IsRequired();
+        }
+
+        private void ConfigureFavorite(EntityTypeBuilder<Favorite> obj)
+        {
+            obj.ToTable("Favorite");
+            obj.HasKey(f => f.Id);
+        }
+
+        private void ConfigureUser(EntityTypeBuilder<User> obj)
+        {
+            obj.ToTable("User");
+            obj.HasKey(u => u.Id);
+            obj.Property(u => u.FirstName).HasMaxLength(128);
+            obj.Property(u => u.LastLoginDateTime).HasMaxLength(128);
+            obj.Property(u => u.Email).HasMaxLength(256);
+            obj.Property(u => u.HashedPassword).HasMaxLength(1024);
+            obj.Property(u => u.Salt).HasMaxLength(1024);
+            obj.Property(u => u.PhoneNumber).HasMaxLength(16);
+        }
+
         private void ConfigureCrew(EntityTypeBuilder<Crew> builder)
         {
             builder.ToTable("Crew");

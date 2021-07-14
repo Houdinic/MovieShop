@@ -4,14 +4,16 @@ using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(MovieShopDbContext))]
-    partial class MovieShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210714035906_CreateUser")]
+    partial class CreateUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,28 +45,6 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Crew");
-                });
-
-            modelBuilder.Entity("ApplicationCore.Entities.Favorite", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("MovieId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MovieId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Favorite");
                 });
 
             modelBuilder.Entity("ApplicationCore.Entities.Genre", b =>
@@ -163,27 +143,6 @@ namespace Infrastructure.Migrations
                     b.ToTable("Movie");
                 });
 
-            modelBuilder.Entity("ApplicationCore.Entities.Review", b =>
-                {
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MovieId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Rating")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ReviewText")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("UserId", "MovieId");
-
-                    b.HasIndex("MovieId");
-
-                    b.ToTable("Review");
-                });
-
             modelBuilder.Entity("ApplicationCore.Entities.Trailer", b =>
                 {
                     b.Property<int>("Id")
@@ -219,7 +178,7 @@ namespace Infrastructure.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("DateOfBirth")
+                    b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
@@ -234,17 +193,17 @@ namespace Infrastructure.Migrations
                         .HasMaxLength(1024)
                         .HasColumnType("nvarchar(1024)");
 
-                    b.Property<bool?>("IsLocked")
+                    b.Property<bool>("IsLocked")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime?>("LastLoginDateTime")
+                    b.Property<DateTime>("LastLoginDateTime")
                         .HasMaxLength(128)
                         .HasColumnType("datetime2");
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("LockoutEndDate")
+                    b.Property<DateTime>("LockoutEndDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("PhoneNumber")
@@ -255,50 +214,12 @@ namespace Infrastructure.Migrations
                         .HasMaxLength(1024)
                         .HasColumnType("nvarchar(1024)");
 
-                    b.Property<bool?>("TwoFactorEnabled")
+                    b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
 
                     b.ToTable("User");
-                });
-
-            modelBuilder.Entity("ApplicationCore.Entities.Favorite", b =>
-                {
-                    b.HasOne("ApplicationCore.Entities.Movie", "Movie")
-                        .WithMany()
-                        .HasForeignKey("MovieId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ApplicationCore.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Movie");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("ApplicationCore.Entities.Review", b =>
-                {
-                    b.HasOne("ApplicationCore.Entities.Movie", "Movie")
-                        .WithMany("Reviews")
-                        .HasForeignKey("MovieId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ApplicationCore.Entities.User", "User")
-                        .WithMany("Reviews")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Movie");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("ApplicationCore.Entities.Trailer", b =>
@@ -314,14 +235,7 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("ApplicationCore.Entities.Movie", b =>
                 {
-                    b.Navigation("Reviews");
-
                     b.Navigation("Trailers");
-                });
-
-            modelBuilder.Entity("ApplicationCore.Entities.User", b =>
-                {
-                    b.Navigation("Reviews");
                 });
 #pragma warning restore 612, 618
         }
