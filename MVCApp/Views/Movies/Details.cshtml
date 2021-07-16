@@ -22,103 +22,53 @@ https://fontawesome.com/
   Craete CastController, CastService and CastRepository which has Cast
 Details Mehthod, All the Movies that the cast belongs to includind the cast details*@
 <div>
-    <h4>Moie</h4>
-    <hr />
-    <div>
         <div class="row">
-            <div class="col-lg-4">
-                <div class="card container shadow bg-light">
-                  <img asp-controller="Movies" asp-action="Details" asp-route-id="@Model.Id" src="@Model.PosterUrl" class="img-fluid" alt="@Model.Title">
+            <div class="col-4">
+                <div class="card shadow bg-light ">
+                    <img src="@Model.PosterUrl" class="img-fluid" alt="@Model.Title">
                 </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-4">
                 <h2 class="text-black-50">@Model.Title</h2><br>
-                                                           <div class="badge">@Model.Rating</div>
+
+                <div>@Model.RunTime |  @Convert.ToDateTime(Model.ReleaseDate).Year 
+                
+                @foreach (var genre in Model.Genres)
+                {
+                    <span class="badge badge-secondary">@genre.Name</span>
+                }
+                </div>
+                
+                <span class="badge badge-warning">@Model.Rating</span>
                 <p>@Model.Overview</p>
             </div>
-            <div class="col-md-4">
-                model.Title
+            <div class="col-4">
+                model.dsfsdf
             </div>
         </div>
-        
-        
-    </div>
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt class = "col-sm-2">
+        <div class="row">
             
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Overview)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Tagline)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Tagline)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Budget)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Budget)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Revenue)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Revenue)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ImdbUrl)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ImdbUrl)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TmdbUrl)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TmdbUrl)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PosterUrl)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PosterUrl)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.BackdropUrl)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.BackdropUrl)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ReleaseDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ReleaseDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.RunTime)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.RunTime)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-    </dl>
+            <div class="col-4">
+                <div><h3>MOVIE FACTS</h3></div>
+                <div class="font-weight-light">
+                    <div>@Convert.ToDateTime(Model.ReleaseDate)</div>
+                    <div>@Model.RunTime</div>
+                    <div>@Model.Revenue</div>
+                    <div>@Model.Budget</div>
+                    <div></div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div><h3>CASTS</h3></div>
+                @foreach (var cast in Model.Casts)
+                {
+            <div><img src="@cast.ProfilePath" alt="{@cast.Name} Profile" /> @cast.Name   @cast.Character</div>
+                }
+            </div>
+            <div class="col-4">
+                model.Titlesfsdfasd
+            </div>
+        </div>
+
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+
