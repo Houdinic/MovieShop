@@ -1,0 +1,10 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\ApplicationCore",
+    "\\Infrastructure",
+    "\\Infrastructure\\Data"
+  ],
+  "SelectedNode": "\\Infrastructure\\Data\\MovieShopDbContext.cs",
+  "PreviewInSolutionExplorer": false
+}

@@ -1,0 +1,124 @@
+﻿@model ApplicationCore.Models.MovieDetailsResponseModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+@*1. Craete Details View for Movie, and show all the movie details as per the MovieDetails Screenshot
+https://getbootstrap.com/docs/4.6/components/list-group/
+https://getbootstrap.com/docs/4.6/components/buttons/
+https://getbootstrap.com/docs/4.6/components/badge/
+https://getbootstrap.com/docs/4.6/layout/grid/
+https://fontawesome.com/
+
+2. Create a PartialView to show Genres in the Header as List 
+    Create GenreRepository => ALL Genres
+    Creare GenreService => Call GenreRepo
+    All services and Repos should use DI and create Interfaces
+    https://getbootstrap.com/docs/4.6/components/dropdowns/
+    When I click on Genre i should show movies belong to that genres (reuse the movie cards)
+
+3. Create a Page for Cast Details
+  Craete CastController, CastService and CastRepository which has Cast
+Details Mehthod, All the Movies that the cast belongs to includind the cast details*@
+<div>
+    <h4>Moie</h4>
+    <hr />
+    <div>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card container shadow bg-light">
+                  <img asp-controller="Movies" asp-action="Details" asp-route-id="@Model.Id" src="@Model.PosterUrl" class="img-fluid" alt="@Model.Title">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <h2 class="text-black-50">@Model.Title</h2><br>
+                                                           <div class="badge">@Model.Rating</div>
+                <p>@Model.Overview</p>
+            </div>
+            <div class="col-md-4">
+                model.Title
+            </div>
+        </div>
+        
+        
+    </div>
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class = "col-sm-2">
+            
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Overview)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Tagline)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Tagline)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Budget)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Budget)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Revenue)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Revenue)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ImdbUrl)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ImdbUrl)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TmdbUrl)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TmdbUrl)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PosterUrl)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PosterUrl)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BackdropUrl)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BackdropUrl)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ReleaseDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ReleaseDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RunTime)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RunTime)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

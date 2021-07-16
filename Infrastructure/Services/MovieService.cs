@@ -12,22 +12,79 @@ namespace Infrastructure.Services
 {
     public class MovieService : IMovieService
     {
-        private readonly IMovieRepository _movieRepositoy;
-        public MovieService(IMovieRepository movieRepositoy)
+        private readonly IMovieRepository _movieRepository;
+        public MovieService(IMovieRepository movieRepository)
         {
-            _movieRepositoy =  movieRepositoy;
+            _movieRepository = movieRepository;
         }
 
-        public Task<List<MovieCardResponseModel>> GetTopRevenueMovies()
+        public async Task<MovieDetailsResponseModel> GetMovieDetails(int id)
         {
-            throw new NotImplementedException();
+            var movie = await _movieRepository.GetByIdAsync(id);
+            var movieDetails = new MovieDetailsResponseModel() {
+
+                Id = movie.Id,
+                Title = movie.Title,
+                Budget = movie.Budget.GetValueOrDefault(),
+                PosterUrl = movie.PosterUrl,
+                ReleaseDate = movie.ReleaseDate,
+                RunTime=movie.RunTime,
+                Revenue=movie.Revenue,
+                Rating=movie.Rating,
+                Overview=movie.Overview,
+                Price=movie.Price
+                
+
+
+            };
+            movieDetails.Casts = new List<CastResponseModel>();
+            foreach (var cast in movie.MovieCasts)
+            {
+                movieDetails.Casts.Add(new CastResponseModel
+                {
+                    Id = cast.CastId,
+                    Name = cast.Cast.Name,
+                    Character=cast.Character,
+                    Gender=cast.Cast.Gender,
+                    TmdbUrl=cast.Cast.TmdbUrl,
+                    ProfilePath=cast.Cast.ProfilePath
+
+                }) ;
+            }
+            movieDetails.Genres = new List<GenreModel>();
+            foreach (var genre in movie.Genres)
+            {
+                movieDetails.Genres.Add(new GenreModel
+                {
+                    Id = genre.Id,
+                    Name=genre.Name
+                    
+                });
+
+            }
+
+            return movieDetails;
+
+
         }
-        //public async Task<List<MovieCardResponseModel>> GetTopRevenueMovies()
-        //{
-        //    var movies = await _movieRepositoy.GetHighest30GrossingMovies();
-        //    var movieCards = new List<MovieCardResponseModel>();
 
-        //}
+        public async Task<List<MovieCardResponseModel>> GetTopRevenueMovies()
+        {
+            var movies = await _movieRepository.GetHighest30GrossingMovies();
 
+            var movieCards = new List<MovieCardResponseModel>();
+            foreach (var movie in movies)
+            {
+                movieCards.Add(new MovieCardResponseModel
+                {
+                    Id = movie.Id,
+                    Budget = movie.Budget.GetValueOrDefault(),
+                    Title = movie.Title,
+                    PosterUrl = movie.PosterUrl
+                });
+            }
+
+            return movieCards;
+        }
     }
 }
