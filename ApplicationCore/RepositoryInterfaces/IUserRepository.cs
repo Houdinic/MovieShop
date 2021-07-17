@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ApplicationCore.RepositoryInterfaces
 {
-    interface IUserRepository
+    public interface IUserRepository
     {
     }
 }

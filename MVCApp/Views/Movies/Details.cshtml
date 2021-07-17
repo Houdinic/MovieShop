@@ -21,54 +21,128 @@ https://fontawesome.com/
 3. Create a Page for Cast Details
   Craete CastController, CastService and CastRepository which has Cast
 Details Mehthod, All the Movies that the cast belongs to includind the cast details*@
-<div>
-        <div class="row">
-            <div class="col-4">
-                <div class="card shadow bg-light ">
-                    <img src="@Model.PosterUrl" class="img-fluid" alt="@Model.Title">
-                </div>
-            </div>
-            <div class="col-4">
-                <h2 class="text-black-50">@Model.Title</h2><br>
 
-                <div>@Model.RunTime |  @Convert.ToDateTime(Model.ReleaseDate).Year 
-                
-                @foreach (var genre in Model.Genres)
-                {
-                    <span class="badge badge-secondary">@genre.Name</span>
-                }
-                </div>
-                
-                <span class="badge badge-warning">@Model.Rating</span>
-                <p>@Model.Overview</p>
-            </div>
-            <div class="col-4">
-                model.dsfsdf
+<div>
+    <div class="back-image row">
+        <div class="col-3">
+            <div class="poster shadow bg-light ">
+                <img src="@Model.PosterUrl" class="img-fluid rounded float-right" alt="@Model.Title">
             </div>
         </div>
-        <div class="row">
-            
-            <div class="col-4">
-                <div><h3>MOVIE FACTS</h3></div>
-                <div class="font-weight-light">
-                    <div>@Convert.ToDateTime(Model.ReleaseDate)</div>
-                    <div>@Model.RunTime</div>
-                    <div>@Model.Revenue</div>
-                    <div>@Model.Budget</div>
-                    <div></div>
-                </div>
+        <div class="col-1"> </div>
+        <div class="col-4">
+            <h1 class="text-white">@Model.Title</h1><br>
+            <h5 class="text-white-50">@Model.Tagline</h5><br>
+            <div class="text-white-50">
+                <h5>
+                    @Model.RunTime  |  @Convert.ToDateTime(Model.ReleaseDate).Year
+
+                    @foreach (var genre in Model.Genres)
+                    {
+                        <span class="badge badge-secondary">@genre.Name</span>
+                    }
+                </h5>
             </div>
-            <div class="col-4">
-                <div><h3>CASTS</h3></div>
+
+            <h5><span class="badge badge-warning">@Model.Rating</span></h5><br />
+            <p class="text-white">@Model.Overview</p><br>
+        </div>
+        <div class="col-1"> </div>
+        <div class="col-2">
+            <div class="position-relative movie-detail-button">
+                <button type="button" class="btn btn-outline-light">Review</button><br />
+                <button type="button" class="btn btn-outline-light">Trailer</button><br />
+                <button type="button" class="btn btn-light">Buy Now $@Model.Price.GetValueOrDefault()</button><br />
+                <button type="button" class="btn btn-light">Watch Movie</button>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3">
+            <br />
+            <div><h3>MOVIE FACTS</h3></div>
+            <div>
+                <ul class="movie-facts list-group list-group-flush">
+                    <li class="list-group-item">Release Date &nbsp<span class="badge badge-pill badge-dark">   @Convert.ToDateTime(Model.ReleaseDate).Year/@Convert.ToDateTime(Model.ReleaseDate).Month/@Convert.ToDateTime(Model.ReleaseDate).Day</span> <hr /></li>
+                    <li class="list-group-item">Run Time &nbsp<span class="badge badge-pill badge-dark">   @Model.RunTime m</span> <hr /></li>
+                    <li class="list-group-item">Box Office &nbsp<span class="badge badge-pill badge-dark">  @Decimal.Round( @Model.Revenue.GetValueOrDefault(),0)</span> <hr /></li>
+                    <li class="list-group-item">Budget &nbsp<span class="badge badge-pill badge-dark">   @Decimal.Round(Model.Budget.GetValueOrDefault(),0)</span> <hr /></li>
+                    <li class="list-group-item"></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-1"></div>
+        <div class="col-5">
+            <br />
+            <div><h3>CASTS</h3></div>
+            <ul class="movie-casts list-group list-group-flush">
                 @foreach (var cast in Model.Casts)
                 {
-            <div><img src="@cast.ProfilePath" alt="{@cast.Name} Profile" /> @cast.Name   @cast.Character</div>
+                <li class="list-group-item">
+                    <img class="movie-cast-image" src="@cast.ProfilePath" alt="{@cast.Name} Profile" /> &nbsp
+                    @cast.Name &nbsp&nbsp @cast.Character
+                    <hr />
+
+                </li>
                 }
-            </div>
-            <div class="col-4">
-                model.Titlesfsdfasd
+            </ul>
+        </div>
+            <div class="col-2">
+
             </div>
         </div>
 
-</div>
+    </div>
+<style>
+    .back-image{
+        position:relative;
+    }
+        .back-image::before {
+            content: "";
+            position: absolute;
+            top: -1em;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:url(@Model.BackdropUrl);
+            filter: brightness(20%);
+        }
+    .row.back-image{
+        height:40em;
+    }
+    .poster {
+        position:relative;
+        margin-top:3em;
 
+
+    }
+    .movie-detail-button {
+
+        margin-top:5em;
+        margin-left:7em;
+        margin-right:2em;
+
+    }
+    .movie-detail-button .btn {
+            width: 20em;
+            margin:0.8em;
+    }
+    .movie-facts {
+        font-size: large;
+        margin: 0.5em;
+        background: lightgray;
+    }
+    .movie-casts .list-group-item{
+        font-size:2em;
+        height:auto;
+        width:auto;
+        
+
+    }
+    .movie-cast-image {
+        border-radius: 50%;
+        height:3em;
+        
+    }
+</style>

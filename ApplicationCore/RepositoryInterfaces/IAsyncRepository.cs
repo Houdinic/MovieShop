@@ -12,7 +12,6 @@ namespace ApplicationCore.RepositoryInterfaces
         // common CRUD operations that will be used by all other repositories
 
         // async/await
-
         Task<T> GetByIdAsync(int id);
         Task<IEnumerable<T>> ListAllAsync();
         Task<IEnumerable<T>> ListAsync(Expression<Func<T, bool>> filter);

@@ -28,13 +28,13 @@ namespace Infrastructure.Services
                 Budget = movie.Budget.GetValueOrDefault(),
                 PosterUrl = movie.PosterUrl,
                 ReleaseDate = movie.ReleaseDate,
-                RunTime=movie.RunTime,
-                Revenue=movie.Revenue,
-                Rating=movie.Rating,
-                Overview=movie.Overview,
-                Price=movie.Price
-                
-
+                RunTime = movie.RunTime,
+                Revenue = movie.Revenue,
+                Rating = movie.Rating,
+                Overview = movie.Overview,
+                Price = movie.Price,
+                Tagline = movie.Tagline,
+                BackdropUrl = movie.BackdropUrl,
 
             };
             movieDetails.Casts = new List<CastResponseModel>();
@@ -66,6 +66,11 @@ namespace Infrastructure.Services
             return movieDetails;
 
 
+        }
+
+        public Task<List<MovieCardResponseModel>> GetMoviesInGenre(int id)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<List<MovieCardResponseModel>> GetTopRevenueMovies()

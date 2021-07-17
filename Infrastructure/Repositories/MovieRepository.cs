@@ -13,9 +13,7 @@ namespace Infrastructure.Repositories
 {
     public class MovieRepository : EfRepository<Movie>, IMovieRepository
     {
-        public MovieRepository(MovieShopDbContext dbContext) : base(dbContext)
-        {
-        }
+        public MovieRepository(MovieShopDbContext dbContext) : base(dbContext) { }
 
         public async Task<List<Movie>> GetHighest30GrossingMovies()
         {
@@ -42,6 +40,11 @@ namespace Infrastructure.Repositories
             }
 
             return movie;
+        }
+
+        public Task<List<Movie>> GetMovieByGenreId(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }
