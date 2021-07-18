@@ -42,9 +42,10 @@ namespace Infrastructure.Repositories
             return movie;
         }
 
-        public Task<List<Movie>> GetMovieByGenreId(int id)
+        public async Task<List<Movie>> GetMovieByGenreId(int id)
         {
-            throw new NotImplementedException();
+            var res = await  _dbContext.Genres.Where(g => g.Id == id).Select(g => g.Movies).SingleAsync();
+            return new List<Movie>(res);
         }
     }
 }

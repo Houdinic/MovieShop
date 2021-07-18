@@ -68,9 +68,22 @@ namespace Infrastructure.Services
 
         }
 
-        public Task<List<MovieCardResponseModel>> GetMoviesInGenre(int id)
+        public async Task<List<MovieCardResponseModel>> GetMoviesInGenre(int id)
         {
-            throw new NotImplementedException();
+            var movies = await _movieRepository.GetMovieByGenreId(id);
+            var movieCards = new List<MovieCardResponseModel>();
+            foreach (var movie in movies)
+            {
+                movieCards.Add(new MovieCardResponseModel
+                {
+                    Id = movie.Id,
+                    Budget = movie.Budget.GetValueOrDefault(),
+                    Title = movie.Title,
+                    PosterUrl = movie.PosterUrl
+                });
+            }
+
+            return movieCards;
         }
 
         public async Task<List<MovieCardResponseModel>> GetTopRevenueMovies()
