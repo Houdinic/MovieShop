@@ -36,7 +36,7 @@ namespace MVCApp
             services.AddScoped<IGenreService, GenreService>();
             services.AddScoped<IGenreRepository, GenreRepository>();
             services.AddScoped<ICastService, CastService>();
-            services.AddScoped<IAsyncRepository<Cast>, EfRepository<Cast>>();
+            services.AddScoped<ICastRepository, CastRepository>();
             services.AddDbContext<MovieShopDbContext>(options => {
                 options.UseSqlServer(Configuration.GetConnectionString("MovieShopDbConnection"));
             });

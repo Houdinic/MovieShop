@@ -7,3 +7,9 @@
 
 <div>@Model.Id</div>
 <div>@Model.Name</div>
+<ul class="list-group list-group-horizontal">
+    @foreach (var movie in Model.MovieCards)
+    {
+        <li class="list-group-item"><partial name="_MovieCard" model="movie" /></li>
+    }
+</ul>

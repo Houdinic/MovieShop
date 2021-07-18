@@ -12,8 +12,8 @@ namespace Infrastructure.Services
 {
     public class CastService : ICastService
     {
-        private readonly IAsyncRepository<Cast> _castRepository;
-        public CastService(IAsyncRepository<Cast> castRepository)
+        private readonly ICastRepository _castRepository;
+        public CastService(ICastRepository castRepository)
         {
             _castRepository = castRepository;
         }
@@ -27,6 +27,18 @@ namespace Infrastructure.Services
                 Gender=cast.Gender,
                 TmdbUrl=cast.TmdbUrl,
             };
+            var movies = new List<MovieCardResponseModel>();
+            castModel.MovieCards = movies;
+            foreach (var movie in cast.MovieCasts)
+            {
+                movies.Add(new MovieCardResponseModel
+                {
+                    Id = movie.MovieId,
+                    Title = movie.Movie.Title,
+                    Budget = movie.Movie.Budget.GetValueOrDefault(),
+                    PosterUrl = movie.Movie.PosterUrl,
+                });
+            }
             return castModel;
         }
     }
