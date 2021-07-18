@@ -5,6 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Genre\**" />
+    <Content Remove="Views\Genre\**" />
+    <EmbeddedResource Remove="Views\Genre\**" />
+    <None Remove="Views\Genre\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\GenreController1.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="Views\Home\GenreList.cshtml" />
   </ItemGroup>
 

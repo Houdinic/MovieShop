@@ -14,6 +14,7 @@ using ApplicationCore.ServiceInterfaces;
 using Infrastructure.Services;
 using ApplicationCore.RepositoryInterfaces;
 using Infrastructure.Repositories;
+using ApplicationCore.Entities;
 
 namespace MVCApp
 {
@@ -34,6 +35,8 @@ namespace MVCApp
             services.AddScoped<IMovieRepository, MovieRepository>();
             services.AddScoped<IGenreService, GenreService>();
             services.AddScoped<IGenreRepository, GenreRepository>();
+            services.AddScoped<ICastService, CastService>();
+            services.AddScoped<IAsyncRepository<Cast>, EfRepository<Cast>>();
             services.AddDbContext<MovieShopDbContext>(options => {
                 options.UseSqlServer(Configuration.GetConnectionString("MovieShopDbConnection"));
             });

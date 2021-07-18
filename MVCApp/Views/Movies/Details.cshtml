@@ -81,7 +81,7 @@ Details Mehthod, All the Movies that the cast belongs to includind the cast deta
                 {
                 <li class="list-group-item">
                     <img class="movie-cast-image" src="@cast.ProfilePath" alt="{@cast.Name} Profile" /> &nbsp
-                    @cast.Name &nbsp&nbsp @cast.Character
+                    <a asp-controller="Cast" asp-action="Details" asp-route-id="@cast.Id" > @cast.Name</a>  &nbsp&nbsp @cast.Character
                     <hr />
 
                 </li>
