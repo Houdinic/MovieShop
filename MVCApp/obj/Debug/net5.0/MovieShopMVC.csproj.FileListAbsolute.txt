@@ -159,3 +159,4 @@ C:\Users\36375\source\repos\MVCApp\MVCApp\bin\Debug\net5.0\System.Web.WebPages.R
 C:\Users\36375\source\repos\MVCApp\MVCApp\bin\Debug\net5.0\System.Web.WebPages.dll
 C:\Users\36375\source\repos\MVCApp\MVCApp\bin\Debug\net5.0\Microsoft.Web.Infrastructure.dll
 C:\Users\36375\source\repos\MVCApp\MVCApp\obj\Debug\net5.0\Razor\Views\Genre\GenreHeader.cshtml.g.cs
+C:\Users\36375\source\repos\MVCApp\MVCApp\obj\Debug\net5.0\Razor\Views\Shared\_GenresView.cshtml.g.cs

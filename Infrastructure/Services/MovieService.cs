@@ -79,7 +79,8 @@ namespace Infrastructure.Services
                     Id = movie.Id,
                     Budget = movie.Budget.GetValueOrDefault(),
                     Title = movie.Title,
-                    PosterUrl = movie.PosterUrl
+                    PosterUrl = movie.PosterUrl,
+                   
                 });
             }
 
