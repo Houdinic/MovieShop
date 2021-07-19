@@ -18,9 +18,11 @@ namespace Infrastructure.Repositories
             _dbContext = dbContext;
         }
 
-        public virtual async Task<T> AddAsync(T entity)
+        public async Task<T> AddAsync(T entity)
         {
-            throw new NotImplementedException();
+            await _dbContext.Set<T>().AddAsync(entity);
+            await _dbContext.SaveChangesAsync();
+            return entity;
         }
 
         public virtual async Task<T> DeleteAsync(T entity)
@@ -45,7 +47,12 @@ namespace Infrastructure.Repositories
 
         public virtual async Task<bool> GetExistsAsync(Expression<Func<T, bool>> filter = null)
         {
-            throw new NotImplementedException();
+            if (filter == null)
+            {
+                return false;
+            }
+
+            return await _dbContext.Set<T>().Where(filter).AnyAsync();
         }
 
         public virtual async Task<IEnumerable<T>> ListAllAsync()

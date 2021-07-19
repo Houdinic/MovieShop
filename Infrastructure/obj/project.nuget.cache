@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "HkA3NZaM5QENzjWT90VEyHIB8Thb+ob5ui1qnfdI3F8hjRrGe1mF9rD0M9uGorTr/jxbyTVZKMV7+obn8slwHw==",
+  "dgSpecHash": "fg1XZtWn/yDoEZ/YSFhQnzdT5F1hrJerkiaUuJ+9JvDd0CEuM5VusPXSBJchKPVtwgyfsdsMMfIP7i97M/VbWQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\36375\\source\\repos\\MVCApp\\Infrastructure\\Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\36375\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
+    "C:\\Users\\36375\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.8\\microsoft.aspnetcore.cryptography.internal.5.0.8.nupkg.sha512",
+    "C:\\Users\\36375\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\5.0.8\\microsoft.aspnetcore.cryptography.keyderivation.5.0.8.nupkg.sha512",
     "C:\\Users\\36375\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\36375\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",
     "C:\\Users\\36375\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.0.1\\microsoft.data.sqlclient.sni.runtime.2.0.1.nupkg.sha512",

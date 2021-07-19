@@ -160,3 +160,7 @@ C:\Users\36375\source\repos\MVCApp\MVCApp\bin\Debug\net5.0\System.Web.WebPages.d
 C:\Users\36375\source\repos\MVCApp\MVCApp\bin\Debug\net5.0\Microsoft.Web.Infrastructure.dll
 C:\Users\36375\source\repos\MVCApp\MVCApp\obj\Debug\net5.0\Razor\Views\Shared\_GenresView.cshtml.g.cs
 C:\Users\36375\source\repos\MVCApp\MVCApp\obj\Debug\net5.0\Razor\Views\Cast\Details.cshtml.g.cs
+C:\Users\36375\source\repos\MVCApp\MVCApp\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\36375\source\repos\MVCApp\MVCApp\bin\Debug\net5.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\36375\source\repos\MVCApp\MVCApp\obj\Debug\net5.0\Razor\Views\Account\Login.cshtml.g.cs
+C:\Users\36375\source\repos\MVCApp\MVCApp\obj\Debug\net5.0\Razor\Views\Account\Register.cshtml.g.cs

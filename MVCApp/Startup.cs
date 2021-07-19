@@ -37,6 +37,8 @@ namespace MVCApp
             services.AddScoped<IGenreRepository, GenreRepository>();
             services.AddScoped<ICastService, CastService>();
             services.AddScoped<ICastRepository, CastRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserService, UserService>();
             services.AddDbContext<MovieShopDbContext>(options => {
                 options.UseSqlServer(Configuration.GetConnectionString("MovieShopDbConnection"));
             });
@@ -65,7 +67,7 @@ namespace MVCApp
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Cast}/{action=Details}/{id=49}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
