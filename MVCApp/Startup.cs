@@ -65,7 +65,7 @@ namespace MVCApp
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Cast}/{action=Details}/{id=49}");
             });
         }
     }

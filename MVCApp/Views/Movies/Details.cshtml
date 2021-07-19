@@ -35,7 +35,7 @@ Details Mehthod, All the Movies that the cast belongs to includind the cast deta
             <h5 class="text-white-50">@Model.Tagline</h5><br>
             <div class="text-white-50">
                 <h5>
-                    @Model.RunTime  |  @Convert.ToDateTime(Model.ReleaseDate).Year
+                    @Model.RunTime min  |  @Convert.ToDateTime(Model.ReleaseDate).Year &nbsp
 
                     @foreach (var genre in Model.Genres)
                     {
@@ -45,7 +45,7 @@ Details Mehthod, All the Movies that the cast belongs to includind the cast deta
             </div>
 
             <h5><span class="badge badge-warning">@Model.Rating</span></h5><br />
-            <p class="text-white">@Model.Overview</p><br>
+            <p class="text-white overview">@Model.Overview</p><br>
         </div>
         <div class="col-1"> </div>
         <div class="col-2">
@@ -114,8 +114,9 @@ Details Mehthod, All the Movies that the cast belongs to includind the cast deta
     .poster {
         position:relative;
         margin-top:3em;
-
-
+    }
+    .overview{
+        font-size:1.3em;
     }
     .movie-detail-button {
 

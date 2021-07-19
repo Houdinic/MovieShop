@@ -26,6 +26,7 @@ namespace Infrastructure.Services
                 Name = cast.Name,
                 Gender=cast.Gender,
                 TmdbUrl=cast.TmdbUrl,
+                ProfilePath=cast.ProfilePath,
             };
             var movies = new List<MovieCardResponseModel>();
             castModel.MovieCards = movies;

@@ -5,11 +5,54 @@
 }
 @model ApplicationCore.Models.CastResponseModel
 
-<div>@Model.Id</div>
-<div>@Model.Name</div>
-<ul class="list-group list-group-horizontal">
-    @foreach (var movie in Model.MovieCards)
-    {
-        <li class="list-group-item"><partial name="_MovieCard" model="movie" /></li>
-    }
-</ul>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3">
+            <h1 class="text-black-50"> @Model.Name</h1><br />
+            <img class="" src="@Model.ProfilePath" alt="{@Model.Name} Profile" /><br />
+            @if (@Model.Gender == "1")
+            {
+                <h4 class="text-black">Gender: Female</h4>
+            }
+            else
+            {
+                <h4 class="text-black">Gender: Male</h4>
+            }<br />
+            <h5 class="text-black-50">Tmdb Url:  @Model.TmdbUrl</h5>
+        </div>
+        <div class="col-8">
+            @{ var i = 0; var length = 6;}
+            @for (i = 0; i < Model.MovieCards.Count - length; i=i+length)
+            {
+                <div class="row">
+                    @for (int j = 0; j < length; j++)
+                    {
+                        <div class="col-2">
+                            <partial name="_MovieCard" model="Model.MovieCards[i+j]" />
+                            <h5 class="text-black">@Model.MovieCards[i + j].Title</h5>
+                        </div>
+                    }
+                </div>
+            }
+        <div class="row">
+            @while (i < Model.MovieCards.Count)
+            {
+                <div class="col-2">
+                    <partial name="_MovieCard" model="Model.MovieCards[i]" />
+                    <h5 class="text-black">@Model.MovieCards[i].Title</h5>
+                </div>
+                i = i + 1;
+            }
+        </div>
+            </div>
+        </div>
+</div>
+               
+
+<style>
+
+</style>
+
+
+
+

@@ -31,8 +31,8 @@ namespace Infrastructure.Repositories
                 throw new Exception($"No Movie Found with {id}");
             }
 
-            var movieRating = await _dbContext.Reviews.Where(m => m.MovieId == id)
-                .AverageAsync(r => r == null ? 0 : r.Rating);
+            var movieRating = await _dbContext.Reviews.Where(m => m.MovieId == id).DefaultIfEmpty()
+              .AverageAsync(r => r == null ? 0 : r.Rating);
 
             if (movieRating > 0)
             {
