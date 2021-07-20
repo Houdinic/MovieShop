@@ -1,26 +1,27 @@
 ﻿@model ApplicationCore.Models.MovieDetailsResponseModel
-
+@using ApplicationCore.ServiceInterfaces
+@inject ICurrentUser currentUser
 @{
     ViewData["Title"] = "Details";
 }
 
 @*1. Craete Details View for Movie, and show all the movie details as per the MovieDetails Screenshot
-https://getbootstrap.com/docs/4.6/components/list-group/
-https://getbootstrap.com/docs/4.6/components/buttons/
-https://getbootstrap.com/docs/4.6/components/badge/
-https://getbootstrap.com/docs/4.6/layout/grid/
-https://fontawesome.com/
+    https://getbootstrap.com/docs/4.6/components/list-group/
+    https://getbootstrap.com/docs/4.6/components/buttons/
+    https://getbootstrap.com/docs/4.6/components/badge/
+    https://getbootstrap.com/docs/4.6/layout/grid/
+    https://fontawesome.com/
 
-2. Create a PartialView to show Genres in the Header as List 
-    Create GenreRepository => ALL Genres
-    Creare GenreService => Call GenreRepo
-    All services and Repos should use DI and create Interfaces
-    https://getbootstrap.com/docs/4.6/components/dropdowns/
-    When I click on Genre i should show movies belong to that genres (reuse the movie cards)
+    2. Create a PartialView to show Genres in the Header as List
+        Create GenreRepository => ALL Genres
+        Creare GenreService => Call GenreRepo
+        All services and Repos should use DI and create Interfaces
+        https://getbootstrap.com/docs/4.6/components/dropdowns/
+        When I click on Genre i should show movies belong to that genres (reuse the movie cards)
 
-3. Create a Page for Cast Details
-  Craete CastController, CastService and CastRepository which has Cast
-Details Mehthod, All the Movies that the cast belongs to includind the cast details*@
+    3. Create a Page for Cast Details
+      Craete CastController, CastService and CastRepository which has Cast
+    Details Mehthod, All the Movies that the cast belongs to includind the cast details*@
 
 <div>
     <div class="back-image row">
@@ -66,8 +67,8 @@ Details Mehthod, All the Movies that the cast belongs to includind the cast deta
                 <ul class="movie-facts list-group list-group-flush">
                     <li class="list-group-item">Release Date &nbsp<span class="badge badge-pill badge-dark">   @Convert.ToDateTime(Model.ReleaseDate).Year/@Convert.ToDateTime(Model.ReleaseDate).Month/@Convert.ToDateTime(Model.ReleaseDate).Day</span> <hr /></li>
                     <li class="list-group-item">Run Time &nbsp<span class="badge badge-pill badge-dark">   @Model.RunTime m</span> <hr /></li>
-                    <li class="list-group-item">Box Office &nbsp<span class="badge badge-pill badge-dark">  @Decimal.Round( @Model.Revenue.GetValueOrDefault(),0)</span> <hr /></li>
-                    <li class="list-group-item">Budget &nbsp<span class="badge badge-pill badge-dark">   @Decimal.Round(Model.Budget.GetValueOrDefault(),0)</span> <hr /></li>
+                    <li class="list-group-item">Box Office &nbsp<span class="badge badge-pill badge-dark">  @Decimal.Round(@Model.Revenue.GetValueOrDefault(), 0)</span> <hr /></li>
+                    <li class="list-group-item">Budget &nbsp<span class="badge badge-pill badge-dark">   @Decimal.Round(Model.Budget.GetValueOrDefault(), 0)</span> <hr /></li>
                     <li class="list-group-item"></li>
                 </ul>
             </div>
@@ -79,21 +80,21 @@ Details Mehthod, All the Movies that the cast belongs to includind the cast deta
             <ul class="movie-casts list-group list-group-flush">
                 @foreach (var cast in Model.Casts)
                 {
-                <li class="list-group-item">
-                    <img class="movie-cast-image" src="@cast.ProfilePath" alt="{@cast.Name} Profile" /> &nbsp
-                    <a asp-controller="Cast" asp-action="Details" asp-route-id="@cast.Id" > @cast.Name</a>  &nbsp&nbsp @cast.Character
-                    <hr />
+                    <li class="list-group-item">
+                        <img class="movie-cast-image" src="@cast.ProfilePath" alt="{@cast.Name} Profile" /> &nbsp
+                        <a asp-controller="Cast" asp-action="Details" asp-route-id="@cast.Id"> @cast.Name</a>  &nbsp&nbsp @cast.Character
+                        <hr />
 
-                </li>
+                    </li>
                 }
             </ul>
         </div>
-            <div class="col-2">
+        <div class="col-2">
 
-            </div>
         </div>
-
     </div>
+
+</div>
 <style>
     .back-image{
         position:relative;
@@ -138,12 +139,12 @@ Details Mehthod, All the Movies that the cast belongs to includind the cast deta
         font-size:2em;
         height:auto;
         width:auto;
-        
+
 
     }
     .movie-cast-image {
         border-radius: 50%;
         height:3em;
-        
+
     }
 </style>
