@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Security.Claims;
+using System.Threading.Tasks;
 using ApplicationCore.ServiceInterfaces;
 using Microsoft.AspNetCore.Http;
 
@@ -27,5 +28,6 @@ namespace Infrastructure.Services
         public bool IsAdmin => throw new NotImplementedException();
 
         public bool IsSuperAdmin => throw new NotImplementedException();
+
     }
 }

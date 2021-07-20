@@ -19,6 +19,18 @@ namespace Infrastructure.Services
             _userRepository = userRepository;
         }
 
+
+        public async Task MakeMoviePurchase(PurchaseRequestModel purchaseRequest)
+        {
+            Purchase purchase = new Purchase() { 
+            MovieId=purchaseRequest.MovieId,
+            UserId=purchaseRequest.UserId,
+            PurchaseDateTime=purchaseRequest.PurchaseDateTime,
+            PurchaseNumber=purchaseRequest.PurchaseNumber,
+            };
+            await _userRepository.PurchaseMovie(purchase);
+        }
+
         public async Task<UserLoginResponseModel> Login(string email, string password)
         {
             var dbUser = await _userRepository.GetUserByEmail(email);
@@ -116,5 +128,6 @@ namespace Infrastructure.Services
                                                                     numBytesRequested: 256 / 8));
             return hashed;
         }
+
     }
 }

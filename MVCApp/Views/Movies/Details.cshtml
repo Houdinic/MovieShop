@@ -53,7 +53,7 @@
             <div class="position-relative movie-detail-button">
                 <button type="button" class="btn btn-outline-light">Review</button><br />
                 <button type="button" class="btn btn-outline-light">Trailer</button><br />
-                <button type="button" class="btn btn-light">Buy Now $@Model.Price.GetValueOrDefault()</button><br />
+                <a asp-controller="User" asp-action="ConfirmPurchase" asp-route-userid="@currentUser.UserId" asp-route-movieid="@Model.Id"><input type="button" class="btn btn-light" value="Buy Now $@Model.Price.GetValueOrDefault()"></a>
                 <button type="button" class="btn btn-light">Watch Movie</button>
             </div>
 

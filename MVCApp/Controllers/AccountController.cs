@@ -117,7 +117,6 @@ namespace MovieShopMVC.Controllers
             // 10:15 AM you wanna buy a movie 
             // 10:30 AM you wanna fav a movie
 
-            return View();
         }
 
     }
