@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31402.337
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieShopMVC", "MVCApp\MovieShopMVC.csproj", "{759F527F-FC68-4AA5-8B9C-F3909D5093C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieShopMVC", "MVCApp\MovieShopMVC.csproj", "{759F527F-FC68-4AA5-8B9C-F3909D5093C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationCore", "ApplicationCore\ApplicationCore.csproj", "{BB8F0C2C-48A1-4535-A7CD-9F0B47FEAD39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationCore", "ApplicationCore\ApplicationCore.csproj", "{BB8F0C2C-48A1-4535-A7CD-9F0B47FEAD39}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{186ADF7B-E33F-42ED-BE67-BF487E21A73C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{186ADF7B-E33F-42ED-BE67-BF487E21A73C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieShopAPI", "MovieShopAPI\MovieShopAPI.csproj", "{22DA4D4A-8979-4AE7-A291-FBC3679C8CE1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{186ADF7B-E33F-42ED-BE67-BF487E21A73C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{186ADF7B-E33F-42ED-BE67-BF487E21A73C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{186ADF7B-E33F-42ED-BE67-BF487E21A73C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22DA4D4A-8979-4AE7-A291-FBC3679C8CE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22DA4D4A-8979-4AE7-A291-FBC3679C8CE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22DA4D4A-8979-4AE7-A291-FBC3679C8CE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22DA4D4A-8979-4AE7-A291-FBC3679C8CE1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -26,11 +26,6 @@ namespace Infrastructure.Repositories
             var movie = await _dbContext.Movies.Include(m => m.MovieCasts).ThenInclude(m => m.Cast)
                 .Include(m => m.Genres).FirstOrDefaultAsync(m => m.Id == id);
 
-            if (movie == null)
-            {
-                throw new Exception($"No Movie Found with {id}");
-            }
-
             var movieRating = await _dbContext.Reviews.Where(m => m.MovieId == id).DefaultIfEmpty()
               .AverageAsync(r => r == null ? 0 : r.Rating);
 
