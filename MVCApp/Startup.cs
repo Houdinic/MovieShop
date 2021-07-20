@@ -15,6 +15,7 @@ using Infrastructure.Services;
 using ApplicationCore.RepositoryInterfaces;
 using Infrastructure.Repositories;
 using ApplicationCore.Entities;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace MVCApp
 {
@@ -39,9 +40,20 @@ namespace MVCApp
             services.AddScoped<ICastRepository, CastRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ICurrentUser, CurrentUser>();
+
+            services.AddHttpContextAccessor();
+
             services.AddDbContext<MovieShopDbContext>(options => {
                 options.UseSqlServer(Configuration.GetConnectionString("MovieShopDbConnection"));
             });
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options => {
+
+                    options.Cookie.Name = "MovieShopAuth";
+                    options.ExpireTimeSpan = TimeSpan.FromHours(2);
+                    options.LoginPath = "/Account/Login";
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,6 +73,8 @@ namespace MVCApp
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
