@@ -31,15 +31,16 @@ namespace MovieShopAPI.Controllers
 
             // 201
         }
-        //[HttpPost]
-        //public async Task<IActionResult> LoginUser([FromBody] UserLoginRequestModel model)
-        //{
-        //    var loginUser = await _userService.Login(model.Email, model.Password);
+        [HttpPost]
+        [Route("login")]
+        public async Task<IActionResult> LoginUser([FromBody] UserLoginRequestModel model)
+        {
+            var loginUser = await _userService.Login(model.Email, model.Password);
 
-        //    return CreatedAtRoute("GetUser", new { id = loginUser.Id }, loginUser);
+            return CreatedAtRoute("GetUser", new { id = loginUser.Id }, loginUser);
 
-        //    // 201
-        //}
+            // 201
+        }
 
         [HttpGet]
         [Route("{id:int}", Name = "GetUser")]

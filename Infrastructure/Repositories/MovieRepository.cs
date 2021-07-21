@@ -47,6 +47,8 @@ namespace Infrastructure.Repositories
         {
             throw new NotImplementedException();
             //var movies = await (from review in _dbContext.Reviews group review by review.MovieId into g select  }).ToListAsync();
-        }
+            //var moviesGroup = await _dbContext.Reviews.GroupBy(m => m.MovieId,m=>new { Rating = m.Rating, avg = 0 }).ToListAsync();
+            //moviesGroup.OrderBy()
+    }
     }
 }

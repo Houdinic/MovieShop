@@ -188,5 +188,17 @@ namespace Infrastructure.Services
         {
             return await _userRepository.GetUserFavorites(userid);
         }
+
+        public async Task<Review> AddUserReviews(ReviewRequestModel model)
+        {
+            var review = new Review()
+            {
+                MovieId = model.MovieId,
+                UserId = model.UserId,
+                ReviewText = model.ReviewText,
+                Rating = model.Rating,
+            };
+            return await _userRepository.AddUserReviews(review);
+        }
     }
 }

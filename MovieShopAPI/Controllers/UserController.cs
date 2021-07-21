@@ -39,23 +39,29 @@ namespace MovieShopAPI.Controllers
             return Ok();
         }
 
-        //[HttpGet]
-        //[Route("{id:int}", Name = "GetUserPurchases")]
-        //public async Task<IActionResult> GetUserPurchases(int id)
-        //{
-        //    return Ok(await _userService.GetUserPuchases(id));
-        //}
-        //[HttpGet]
-        //[Route("{id:int}", Name = "GetUserFavorites")]
-        //public async Task<IActionResult> GetUserFavorites(int id)
-        //{
-        //    return Ok(await _userService.GetUserFavorites(id));
-        //}
-        //[HttpGet]
-        //[Route("{id:int}", Name = "GetUserReviews")]
-        //public async Task<IActionResult> GetUserReviews(int id)
-        //{
-        //    return Ok(await _userService.GetUserReviews(id));
-        //}
+        [HttpGet]
+        [Route("User/{id:int}/purchase")]
+        public async Task<IActionResult> GetUserPurchases(int id)
+        {
+            return Ok(await _userService.GetUserPuchases(id));
+        }
+        [HttpGet]
+        [Route("User/{id:int}/favorite")]
+        public async Task<IActionResult> GetUserFavorites(int id)
+        {
+            return Ok(await _userService.GetUserFavorites(id));
+        }
+        [HttpGet]
+        [Route("User/{id:int}/reviews", Name = "GetUserReviews")]
+        public async Task<IActionResult> GetUserReviews(int id)
+        {
+            return Ok(await _userService.GetUserReviews(id));
+        }
+        [HttpPost]
+        [Route("User/review")]
+        public async Task<IActionResult> PostUserReviews([FromBody] ReviewRequestModel model)
+        {
+            return Ok(await _userService.AddUserReviews(model));
+        }
     }
 }

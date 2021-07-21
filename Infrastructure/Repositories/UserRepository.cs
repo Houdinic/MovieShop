@@ -22,6 +22,13 @@ namespace Infrastructure.Repositories
             return favorite;
         }
 
+        public async Task<Review> AddUserReviews(Review review)
+        {
+            await _dbContext.Reviews.AddAsync(review);
+            await _dbContext.SaveChangesAsync();
+            return review;
+        }
+
         public async Task<Favorite> DropFavoriteMovie(int userid, int movieid)
         {
             var favorite = new Favorite() { MovieId = movieid, UserId = userid };

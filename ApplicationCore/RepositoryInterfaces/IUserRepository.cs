@@ -14,5 +14,6 @@ namespace ApplicationCore.RepositoryInterfaces
         Task<List<Purchase>> GetUserPuchases(int userid);
         Task<List<Review>> GetUserReviews(int userid);
         Task<List<Favorite>> GetUserFavorites(int userid);
+        Task<Review> AddUserReviews(Review review);
     }
 }
