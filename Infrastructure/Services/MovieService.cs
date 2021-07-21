@@ -18,6 +18,23 @@ namespace Infrastructure.Services
             _movieRepository = movieRepository;
         }
 
+        public async Task<List<MovieCardResponseModel>> GetAll()
+        {
+            var movies = await _movieRepository.ListAllAsync();
+            var allmovies = new List<MovieCardResponseModel>();
+            foreach (var movie in movies)
+            {
+                allmovies.Add(new MovieCardResponseModel()
+                {
+                    Id = movie.Id,
+                    Budget = movie.Budget.GetValueOrDefault(),
+                    Title = movie.Title,
+                    PosterUrl = movie.PosterUrl,
+                });
+            }
+            return allmovies;
+        }
+
         public async Task<MovieDetailsResponseModel> GetMovieDetails(int id)
         {
             var movie = await _movieRepository.GetByIdAsync(id);
@@ -68,6 +85,23 @@ namespace Infrastructure.Services
 
         }
 
+        public async Task<List<ReviewResponseModel>> GetMovieReviews(int id)
+        {
+            var movie = await _movieRepository.GetByIdAsync(id);
+            var reviews = new List<ReviewResponseModel>();
+            foreach (var review in movie.Reviews)
+            {
+                reviews.Add(new ReviewResponseModel()
+                {
+                    MovieId=review.MovieId,
+                    UserId=review.UserId,
+                    ReviewText=review.ReviewText,
+                    Rating=review.Rating,
+                });
+            }
+            return reviews;
+        }
+
         public async Task<List<MovieCardResponseModel>> GetMoviesInGenre(int id)
         {
             var movies = await _movieRepository.GetMovieByGenreId(id);
@@ -85,6 +119,11 @@ namespace Infrastructure.Services
             }
 
             return movieCards;
+        }
+
+        public async Task<List<MovieCardResponseModel>> GetTopRatedMovies()
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<List<MovieCardResponseModel>> GetTopRevenueMovies()
@@ -105,5 +144,6 @@ namespace Infrastructure.Services
 
             return movieCards;
         }
+        
     }
 }

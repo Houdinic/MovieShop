@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using ApplicationCore.Entities;
@@ -87,7 +88,8 @@ namespace Infrastructure.Services
                 Salt = salt,
                 FirstName = requestModel.FirstName,
                 LastName = requestModel.LastName,
-                HashedPassword = hashedPassword
+                HashedPassword = hashedPassword,
+                DateOfBirth=requestModel.DateOfBirth,
             };
 
             // save to database by calling UserRepository Add method
@@ -142,6 +144,49 @@ namespace Infrastructure.Services
                 DateOfBirth = user.DateOfBirth
             };
             return userResponseModel;
+        }
+
+        public async Task<List<UserResponseModel>> GetAllUsers()
+        {
+            var users= await _userRepository.ListAllAsync();
+            var userModels = new List<UserResponseModel>();
+            foreach (var user in users)
+            {
+                userModels.Add(new UserResponseModel()
+                {
+                    Id = user.Id,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Email = user.Email,
+                    DateOfBirth = user.DateOfBirth
+                });
+            }
+            return userModels;
+        }
+
+        public async Task AddFavorite(FavoriteRequestModel model)
+        {
+            await _userRepository.AddFavoriteMovie(model.UserId, model.MovieId);
+        }
+
+        public async Task DropFavorite(FavoriteRequestModel model)
+        {
+            await _userRepository.DropFavoriteMovie(model.UserId, model.MovieId);
+        }
+
+        public async Task<List<Purchase>> GetUserPuchases(int userid)
+        {
+            return await _userRepository.GetUserPuchases(userid);
+        }
+
+        public async Task<List<Review>> GetUserReviews(int userid)
+        {
+            return await _userRepository.GetUserReviews(userid);
+        }
+
+        public async Task<List<Favorite>> GetUserFavorites(int userid)
+        {
+            return await _userRepository.GetUserFavorites(userid);
         }
     }
 }

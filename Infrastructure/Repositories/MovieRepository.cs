@@ -39,8 +39,14 @@ namespace Infrastructure.Repositories
 
         public async Task<List<Movie>> GetMovieByGenreId(int id)
         {
-            var res = await  _dbContext.Genres.Where(g => g.Id == id).Select(g => g.Movies).SingleAsync();
+            var res = await _dbContext.Genres.Where(g => g.Id == id).Select(g => g.Movies).SingleAsync();
             return new List<Movie>(res);
+        }
+
+        public async Task<List<Movie>> GetBestRatedMovies()
+        {
+            throw new NotImplementedException();
+            //var movies = await (from review in _dbContext.Reviews group review by review.MovieId into g select  }).ToListAsync();
         }
     }
 }

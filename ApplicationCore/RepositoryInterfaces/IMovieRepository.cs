@@ -11,5 +11,6 @@ namespace ApplicationCore.RepositoryInterfaces
     {
          Task<List<Movie>> GetHighest30GrossingMovies();
         Task<List<Movie>> GetMovieByGenreId(int id);
+        Task<List<Movie>> GetBestRatedMovies();
     }
 }

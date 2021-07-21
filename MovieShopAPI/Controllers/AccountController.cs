@@ -31,6 +31,15 @@ namespace MovieShopAPI.Controllers
 
             // 201
         }
+        //[HttpPost]
+        //public async Task<IActionResult> LoginUser([FromBody] UserLoginRequestModel model)
+        //{
+        //    var loginUser = await _userService.Login(model.Email, model.Password);
+
+        //    return CreatedAtRoute("GetUser", new { id = loginUser.Id }, loginUser);
+
+        //    // 201
+        //}
 
         [HttpGet]
         [Route("{id:int}", Name = "GetUser")]
@@ -44,6 +53,12 @@ namespace MovieShopAPI.Controllers
             }
 
             return Ok(user);
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetAllAccount()
+        {
+            var users = await _userService.GetAllUsers();
+            return Ok(users);
         }
 
     }
