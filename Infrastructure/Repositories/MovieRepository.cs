@@ -47,8 +47,39 @@ namespace Infrastructure.Repositories
         {
             throw new NotImplementedException();
             //var movies = await (from review in _dbContext.Reviews group review by review.MovieId into g select  }).ToListAsync();
-            //var moviesGroup = await _dbContext.Reviews.GroupBy(m => m.MovieId,m=>new { Rating = m.Rating, avg = 0 }).ToListAsync();
+            //var moviesGroup = await _dbContext.Reviews.Include(r=>r.Movie).GroupBy(r=>r.MovieId).OrderByDescending(r=>r.Average(m=>m.Rating));
+            var movies = await _dbContext.Reviews.GroupBy(m => m.MovieId).OrderByDescending(r => r.Average(r => r.Rating)).ToListAsync();
+            var res = new List<Movie>();
+            foreach (var movie in movies)
+            {
+                res.Add(new Movie()
+                {
+                    Id=movie.Key,
+
+                });
+            }
             //moviesGroup.OrderBy()
-    }
+            var topRatedMovies = await _dbContext.Reviews.Include(m => m.Movie)
+                                                 .GroupBy(r => new
+                                                 {
+                                                     Id = r.MovieId,
+                                                     r.Movie.PosterUrl,
+                                                     r.Movie.Title,
+                                                     r.Movie.ReleaseDate
+                                                 })
+                                                 .OrderByDescending(g => g.Average(m => m.Rating))
+                                                 .Select(m => new Movie
+                                                 {
+                                                     Id = m.Key.Id,
+                                                     PosterUrl = m.Key.PosterUrl,
+                                                     Title = m.Key.Title,
+                                                     ReleaseDate = m.Key.ReleaseDate,
+                                                     Rating = m.Average(x => x.Rating)
+                                                 })
+                                                 .Take(50)
+                                                 .ToListAsync();
+
+            return topRatedMovies;
+        }
     }
 }
