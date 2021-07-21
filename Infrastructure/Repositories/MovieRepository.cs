@@ -45,19 +45,18 @@ namespace Infrastructure.Repositories
 
         public async Task<List<Movie>> GetBestRatedMovies()
         {
-            throw new NotImplementedException();
             //var movies = await (from review in _dbContext.Reviews group review by review.MovieId into g select  }).ToListAsync();
             //var moviesGroup = await _dbContext.Reviews.Include(r=>r.Movie).GroupBy(r=>r.MovieId).OrderByDescending(r=>r.Average(m=>m.Rating));
-            var movies = await _dbContext.Reviews.GroupBy(m => m.MovieId).OrderByDescending(r => r.Average(r => r.Rating)).ToListAsync();
-            var res = new List<Movie>();
-            foreach (var movie in movies)
-            {
-                res.Add(new Movie()
-                {
-                    Id=movie.Key,
+            //var movies = await _dbContext.Reviews.GroupBy(m => m.MovieId).OrderByDescending(r => r.Average(r => r.Rating)).ToListAsync();
+            //var res = new List<Movie>();
+            //foreach (var movie in movies)
+            //{
+            //    res.Add(new Movie()
+            //    {
+            //        Id=movie.Key,
 
-                });
-            }
+            //    });
+            //}
             //moviesGroup.OrderBy()
             var topRatedMovies = await _dbContext.Reviews.Include(m => m.Movie)
                                                  .GroupBy(r => new

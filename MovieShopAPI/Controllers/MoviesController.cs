@@ -64,6 +64,11 @@ namespace MovieShopAPI.Controllers
         {
             return Ok(await _movieService.GetMovieReviews(id));
         }
-
+        [HttpGet]
+        [Route("toprated")]
+        public async Task<IActionResult> GetTopRated()
+        {
+            return Ok(await _movieService.GetTopRatedMovies());
+        }
     }
 }
