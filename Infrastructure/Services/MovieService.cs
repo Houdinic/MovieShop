@@ -7,6 +7,7 @@ using ApplicationCore.Models;
 using ApplicationCore.RepositoryInterfaces;
 using ApplicationCore.ServiceInterfaces;
 using Infrastructure.Repositories;
+using ApplicationCore.Entities;
 
 namespace Infrastructure.Services
 {
@@ -17,6 +18,7 @@ namespace Infrastructure.Services
         {
             _movieRepository = movieRepository;
         }
+
 
         public async Task<List<MovieCardResponseModel>> GetAll()
         {
@@ -158,6 +160,59 @@ namespace Infrastructure.Services
 
             return movieCards;
         }
-        
+
+        public async  Task<Movie> AddNewMovie(MovieCreateRequestModel model)
+        {
+            var movie = new Movie()
+            {
+                Id = model.Id,
+                Title = model.Title,
+                Budget = model.Budget.GetValueOrDefault(),
+                PosterUrl = model.PosterUrl,
+                ReleaseDate = model.ReleaseDate,
+                RunTime = model.RunTime,
+                Revenue = model.Revenue,
+                Rating = model.Rating,
+                Overview = model.Overview,
+                Price = model.Price,
+                Tagline = model.Tagline,
+                BackdropUrl = model.BackdropUrl,
+                OriginalLanguage = model.OriginalLanguage,
+                ImdbUrl = model.ImdbUrl,
+                TmdbUrl = model.TmdbUrl,
+                Genres = (ICollection<Genre>)model.Genres,
+            };
+            await _movieRepository.AddAsync(movie);
+            return movie;
+        }
+        public async Task<Movie> UpdateMovie(MovieCreateRequestModel model)
+        {
+            var movie = new Movie()
+            {
+                Id = model.Id,
+                Title = model.Title,
+                Budget = model.Budget.GetValueOrDefault(),
+                PosterUrl = model.PosterUrl,
+                ReleaseDate = model.ReleaseDate,
+                RunTime = model.RunTime,
+                Revenue = model.Revenue,
+                Rating = model.Rating,
+                Overview = model.Overview,
+                Price = model.Price,
+                Tagline = model.Tagline,
+                BackdropUrl = model.BackdropUrl,
+                OriginalLanguage = model.OriginalLanguage,
+                ImdbUrl = model.ImdbUrl,
+                TmdbUrl = model.TmdbUrl,
+                Genres = (ICollection<Genre>)model.Genres,
+            };
+            await _movieRepository.UpdateAsync(movie);
+            return movie;
+        }
+
+        public async Task<List<Purchase>> GetPurchase()
+        {
+            return await _movieRepository.GetPurchases();
+        }
     }
 }

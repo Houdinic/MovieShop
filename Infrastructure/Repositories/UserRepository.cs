@@ -68,5 +68,12 @@ namespace Infrastructure.Repositories
             await _dbContext.Purchases.AddAsync(purchase);
             await _dbContext.SaveChangesAsync();
         }
+
+        public async Task<Review> UpdateUserReviews(Review review)
+        {
+            _dbContext.Reviews.Update(review);
+            await _dbContext.SaveChangesAsync();
+            return review;
+        }
     }
 }

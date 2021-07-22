@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ApplicationCore.Entities;
 
+
 namespace ApplicationCore.RepositoryInterfaces
 {
     public interface IMovieRepository: IAsyncRepository<Movie>
@@ -12,5 +13,6 @@ namespace ApplicationCore.RepositoryInterfaces
          Task<List<Movie>> GetHighest30GrossingMovies();
         Task<List<Movie>> GetMovieByGenreId(int id);
         Task<List<Movie>> GetBestRatedMovies();
+        Task<List<Purchase>> GetPurchases();
     }
 }

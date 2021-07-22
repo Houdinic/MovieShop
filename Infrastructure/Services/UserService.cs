@@ -200,5 +200,17 @@ namespace Infrastructure.Services
             };
             return await _userRepository.AddUserReviews(review);
         }
+
+        public async Task<Review> UpdateUserReviews(ReviewRequestModel model)
+        {
+            var review = new Review()
+            {
+                MovieId = model.MovieId,
+                UserId = model.UserId,
+                ReviewText = model.ReviewText,
+                Rating = model.Rating,
+            };
+            return await _userRepository.UpdateUserReviews(review);
+        }
     }
 }

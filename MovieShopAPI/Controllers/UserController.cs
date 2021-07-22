@@ -63,5 +63,11 @@ namespace MovieShopAPI.Controllers
         {
             return Ok(await _userService.AddUserReviews(model));
         }
+        [HttpPut]
+        [Route("User/review")]
+        public async Task<IActionResult> UpdateUserReviews([FromBody] ReviewRequestModel model)
+        {
+            return Ok(await _userService.UpdateUserReviews(model));
+        }
     }
 }

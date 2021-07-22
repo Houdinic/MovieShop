@@ -80,5 +80,10 @@ namespace Infrastructure.Repositories
 
             return topRatedMovies;
         }
+
+        public async Task<List<Purchase>> GetPurchases()
+        {
+            return await _dbContext.Purchases.ToListAsync();
+        }
     }
 }

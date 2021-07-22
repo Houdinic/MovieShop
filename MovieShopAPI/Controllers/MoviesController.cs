@@ -70,5 +70,7 @@ namespace MovieShopAPI.Controllers
         {
             return Ok(await _movieService.GetTopRatedMovies());
         }
+
+
     }
 }

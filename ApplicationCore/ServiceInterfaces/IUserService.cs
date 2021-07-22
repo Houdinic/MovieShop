@@ -21,5 +21,6 @@ namespace ApplicationCore.ServiceInterfaces
         Task<List<Review>> GetUserReviews(int userid);
         Task<List<Favorite>> GetUserFavorites(int userid);
         Task<Review> AddUserReviews(ReviewRequestModel model);
+        Task<Review> UpdateUserReviews(ReviewRequestModel model);
     }
 }

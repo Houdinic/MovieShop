@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ApplicationCore.Models;
+using ApplicationCore.Entities;
 
 namespace ApplicationCore.ServiceInterfaces
 {
@@ -15,5 +16,8 @@ namespace ApplicationCore.ServiceInterfaces
         Task<List<MovieCardResponseModel>> GetAll();
         Task<List<MovieCardResponseModel>> GetTopRatedMovies();
         Task<List<ReviewResponseModel>> GetMovieReviews(int id);
+        Task<Movie> AddNewMovie(MovieCreateRequestModel model);
+        Task<Movie> UpdateMovie(MovieCreateRequestModel model);
+        Task<List<Purchase>> GetPurchase();
     }
 }
